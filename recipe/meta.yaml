@@ -1,42 +1,45 @@
 {% set name = "pypika" %}
-{% set version = "0.48.8" %}
-
+{% set version = "0.51.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pypika-{{ version }}.tar.gz
-  sha256: 45af481d8523d60f87e308dee6ff5c454f331c8ce3a675e5398fbea6c20fe1b1
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: c30c7c1048fbf056fd3920c5a2b88b0c29dd190a9b2bee971fd17e4abe4d0ebe
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<310]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - pip <21.3
-    - python >=3.6
+    - python
+    - pip
+    - setuptools
   run:
-    - python >=3.6
+    - python
+    - typing_extensions >=4.5.0  # [py<311]
 
 test:
   imports:
     - pypika
     - pypika.clickhouse
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/kayak/pypika
   summary: A SQL query builder API for Python
   license: Apache-2.0
+  license_family: APACHE
   license_file: LICENSE.txt
 
 extra:
   recipe-maintainers:
     - mccarthyryanc
+    - thewchan
