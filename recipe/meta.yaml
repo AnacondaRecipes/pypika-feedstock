@@ -19,6 +19,7 @@ requirements:
     - python
     - pip
     - setuptools
+    - wheel
   run:
     - python
     - typing_extensions >=4.5.0  # [py<311]
