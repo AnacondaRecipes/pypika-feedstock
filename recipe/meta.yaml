@@ -35,6 +35,8 @@ test:
 
 about:
   home: https://github.com/kayak/pypika
+  dev_url: https://github.com/kayak/pypika
+  doc_url: https://pypika.readthedocs.io
   summary: A SQL query builder API for Python
   license: Apache-2.0
   license_family: APACHE
